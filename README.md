@@ -35,7 +35,7 @@ The project combines PDF parsing, a 3-layer categorization system, interactive a
 ## What this app does
 
 * **PDF parsing**
-  * Extracts financial transactions from any bank / credit card / UPI statement PDF.
+  * Extracts financial transactions from any bank / UPI statement PDF.
   * Supports wallets like Paytm, PhonePe, and GPay, as long as the PDF contains text-based transactions.
 
 * **AI categorization**
@@ -49,7 +49,7 @@ The project combines PDF parsing, a 3-layer categorization system, interactive a
   * Produces AI-powered financial recommendations based on the user’s transaction history and spending behavior.
 
 * **Report generation**
-  * Builds downloadable PDF reports including summaries, charts, category breakdown, and recommendations.
+  * Builds downloadable PDF reports including summaries, category breakdown, and recommendations.
 
 ---
 
@@ -91,7 +91,7 @@ The project combines PDF parsing, a 3-layer categorization system, interactive a
 
 ## Upload PDF
 
-User uploads any bank, credit card, or UPI statement PDF via the Streamlit interface.
+User uploads any bank or UPI statement PDF via the Streamlit interface.
 
 ## Extract transactions
 
@@ -112,7 +112,7 @@ Gemini uses the aggregated view to propose budgets, reduction opportunities, and
 
 ## Export & report
 
-Users can download a CSV of all transactions and a neatly formatted PDF report with charts and recommendations.
+Users can download a CSV of all transactions and a neatly formatted PDF report with summaries and recommendations.
 
 ---
 
@@ -147,7 +147,7 @@ The app reads this key to call the Gemini API for categorization and advice.
 ## 3. Upload a statement PDF
 
 * Click the “Choose a PDF file” button.
-* Select your bank / card / UPI statement PDF (e.g., Paytm, PhonePe, GPay statement).
+* Select your bank / UPI statement PDF (e.g., Paytm, PhonePe, GPay statement).
 * Wait for parsing and extraction to complete; progress/spinner will be shown.
 
 ---
@@ -175,7 +175,7 @@ The app reads this key to call the Gemini API for categorization and advice.
 ### Download report
 
 * Button to export CSV transaction data.
-* Button to generate and download a PDF report with summary, charts, and AI insights.
+* Button to generate and download a PDF report with summary and AI insights.
 
 ---
 
