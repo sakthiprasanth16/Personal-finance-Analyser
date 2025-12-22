@@ -219,7 +219,7 @@ pip install -r requirements.txt
 A minimal repository layout:
 
 ```
-ai-finance-assistant/
+Personal-finance-Analyser/
 ├─ app.py # Main Streamlit app
 ├─ requirements.txt # Python dependencies
 └─ README.md # Project documentation
