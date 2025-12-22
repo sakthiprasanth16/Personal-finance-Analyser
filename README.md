@@ -25,7 +25,7 @@ Live demo (Hugging Face Space):
 
 # Project overview
 
-Goal: build an intelligent finance assistant that can read any bank, credit card, or UPI PDF statement and convert it into clear spending insights and actionable recommendations.  
+Goal: build an intelligent finance assistant that can read any Paytm, PhonePe, GPay or other UPI PDF statement and convert it into clear spending insights and actionable recommendations.  
 The project combines PDF parsing, a 3-layer categorization system, interactive analytics, and Google Gemini AI to provide personalized financial guidance and professional reports.
 
 ---
