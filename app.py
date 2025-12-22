@@ -1432,7 +1432,7 @@ def main():
         st.header("📤 Upload Your Financial Statement")
 
         uploaded_file = st.file_uploader(
-            "Choose a PDF file (Bank/UPI/Credit Card Statement)",
+            "Choose a PDF file (Paytm, PhonePe, GPay, etc,)",
             type="pdf"
         )
 
