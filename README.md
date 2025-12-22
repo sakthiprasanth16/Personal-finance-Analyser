@@ -182,7 +182,7 @@ The app reads this key to call the Gemini API for categorization and advice.
 # Environment & requirements
 
 Create a `requirements.txt` with:
-
+```
 
 streamlit>=1.28.0
 pdfplumber>=0.10.3
@@ -194,7 +194,7 @@ matplotlib>=3.7.0
 numpy>=1.24.0
 pillow>=10.0.0
 openpyxl>=3.1.0
-
+```
 Recommended:
 
 * Python: 3.10 or higher.
@@ -218,10 +218,12 @@ pip install -r requirements.txt
 
 A minimal repository layout:
 
-
+```
+ai-finance-assistant/
 ├─ app.py # Main Streamlit app
 ├─ requirements.txt # Python dependencies
-├─ README.md # Project documentation
+└─ README.md # Project documentation
+ ```
 
 *(This fenced code block keeps the tree aligned correctly in GitHub.)*
 
