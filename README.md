@@ -5,6 +5,9 @@
 AI Finance Assistant is a Streamlit-based web application that transforms raw financial PDF statements into structured transactions, rich analytics, and personalized AI-powered financial advice.  
 The app handles PDF parsing, multi-layer expense categorization, spending analysis, wasteful spending detection, and generates professional PDF reports with insights and recommendations.
 
+Live demo (Hugging Face Space):  
+👉 https://huggingface.co/spaces/prasanthr0416/Ai_Finance_Analyser
+
 ---
 
 ## Table of Contents
@@ -115,12 +118,16 @@ Users can download a CSV of all transactions and a neatly formatted PDF report w
 
 # Usage instructions
 
-## 1. Start the app
+## 1. Start the app (local)
 
 From the project root:
 
+streamlit run app.py
 
 This usually opens the app at `http://localhost:8501` in your browser.
+
+Or try the hosted demo directly:  
+https://huggingface.co/spaces/prasanthr0416/Ai_Finance_Analyser
 
 ---
 
@@ -130,6 +137,8 @@ On first run, the app will ask for your Google Gemini API key in a text input or
 
 Alternatively, set an environment variable before running:
 
+export GEMINI_API_KEY="your_api_key_here" # macOS / Linux
+setx GEMINI_API_KEY "your_api_key_here" # Windows (PowerShell)
 
 The app reads this key to call the Gemini API for categorization and advice.
 
@@ -174,6 +183,7 @@ The app reads this key to call the Gemini API for categorization and advice.
 
 Create a `requirements.txt` with:
 
+
 streamlit>=1.28.0
 pdfplumber>=0.10.3
 pandas>=2.0.0
@@ -184,8 +194,6 @@ matplotlib>=3.7.0
 numpy>=1.24.0
 pillow>=10.0.0
 openpyxl>=3.1.0
-
-These versions are compatible with modern Python 3.10+ environments and commonly used with Streamlit + Gemini + PDF tooling.
 
 Recommended:
 
@@ -211,12 +219,11 @@ pip install -r requirements.txt
 A minimal repository layout:
 
 
-ai-finance-assistant/
-├── app.py # Main Streamlit app
-├── requirements.txt # Python dependencies
-├── README.md # Project documentation
-├── .gitignore # Git ignore rules
-└── assets/ # (Optional) logos, sample PDFs, images
+├─ app.py # Main Streamlit app
+├─ requirements.txt # Python dependencies
+├─ README.md # Project documentation
+
+*(This fenced code block keeps the tree aligned correctly in GitHub.)*
 
 ---
 
@@ -229,12 +236,11 @@ ai-finance-assistant/
 * Set `GEMINI_API_KEY` in the app’s Secrets configuration.
 * Deploy; Streamlit will build from `requirements.txt` and run `app.py`.
 
----
-
 ## Hugging Face Spaces (Streamlit)
 
 * Create a new Space and select **Streamlit** as the SDK.
 * Upload `app.py`, `requirements.txt`, and any assets.
 * In **Settings → Secrets**, add `GEMINI_API_KEY` with your key.
-* The Space will build and give you a public URL for your AI Finance Assistant.
+* The Space will build and give you a public URL, for example:  
+  `https://huggingface.co/spaces/prasanthr0416/Ai_Finance_Analyser`
 
