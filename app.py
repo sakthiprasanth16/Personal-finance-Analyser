@@ -1,5 +1,5 @@
 import streamlit as st
-# ==================== PAGE CONFIG - MUST BE FIRST ====================
+# ==================== PAGE CONFIG ====================
 st.set_page_config(
     page_title="AI Finance Assistant",
     page_icon="💰",
@@ -29,10 +29,10 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 import matplotlib
 import os
-matplotlib.use('Agg')  # Use non-interactive backend
+matplotlib.use('Agg')  
 
 
-# ==================== ENHANCED TITLE & HEADER ====================
+# ==================== TITLE & HEADER ====================
 st.markdown("""
 <div style="
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -68,7 +68,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ==================== SIMPLIFIED USER INSTRUCTIONS ====================
+# ==================== USER INSTRUCTIONS ====================
 with st.expander("🚀 **Get Started**", expanded=True):
     col1, col2 = st.columns(2)
     
@@ -225,7 +225,7 @@ if 'recommendations' not in st.session_state:
 if 'charts' not in st.session_state:
     st.session_state.charts = None
 
-# ==================== 3-LAYER CATEGORIZER WITH ESSENTIALS ====================
+# ==================== 3-LAYER CATEGORIZER ====================
 class SmartTransactionCategorizer:
     """3-Layer system with enhanced mapping including Essentials category"""
 
@@ -506,7 +506,7 @@ class SmartTransactionCategorizer:
                 category_totals = expense_df.groupby('Smart_Category')['amount'].sum()
                 analysis['category_totals'] = category_totals.to_dict()
 
-                # Calculate essential vs discretionary spending - FIXED LOGIC
+                # Calculate essential vs discretionary spending
                 for category, amount in category_totals.items():
                     cat_lower = category.lower()
 
@@ -615,7 +615,7 @@ class SmartTransactionCategorizer:
 
         return analysis
 
-# ==================== WORKING EXTRACTION FUNCTIONS ====================
+# ==================== EXTRACTION FUNCTIONS ====================
 def extract_text_from_pdf(uploaded_file):
     """Extract all text from PDF using pdfplumber"""
     try:
@@ -724,7 +724,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
 
     df = pd.DataFrame(categorized_data)
 
-    # 1. Spending by Category Pie Chart - REMOVED TITLE FROM PLOT
+    # 1. Spending by Category Pie Chart
     if 'Smart_Category' in df.columns and 'amount' in df.columns:
         expense_df = df[df['type'].str.lower().isin(['expense', 'debit'])]
 
@@ -738,17 +738,17 @@ def create_charts(categorized_data, spending_analysis, categorizer):
             category_totals = expense_df.groupby('Category_Display')['amount'].sum().reset_index()
 
             if len(category_totals) > 0:
-                # Create pie chart WITHOUT title
+                # Create pie chart
                 fig = px.pie(
                     category_totals,
                     values='amount',
                     names='Category_Display',
-                    title="",  # Empty title
+                    title="",  
                     hole=0.3,
                     color_discrete_sequence=px.colors.qualitative.Set3
                 )
 
-                # Update layout for better visibility
+                # visibility
                 fig.update_traces(
                     textposition='inside',
                     textinfo='percent+label',
@@ -766,7 +766,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
 
                 charts['spending_categories'] = fig
 
-    # 2. Top Categories Bar Chart - REMOVED TITLE FROM PLOT
+    # 2. Top Categories Bar Chart
     top_cats = spending_analysis.get('top_categories', [])
     if top_cats:
         top_df = pd.DataFrame(top_cats)
@@ -774,7 +774,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
             top_df,
             x='category',
             y='amount',
-            title="",  # Empty title
+            title="",  
             color='amount',
             color_continuous_scale='Viridis',
             text='amount'
@@ -791,12 +791,12 @@ def create_charts(categorized_data, spending_analysis, categorizer):
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
             font=dict(color='black', size=12),
-            margin=dict(t=0)  # Remove top margin
+            margin=dict(t=0)  
         )
         fig.update_yaxes(tickprefix='₹')
         charts['top_categories'] = fig
 
-    # 3. Time-based trends - REMOVED TITLES FROM PLOTS
+    # 3. Time-based trends
     if 'date' in df.columns and 'time' in df.columns:
         try:
             # Hourly spending
@@ -811,7 +811,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
                     hourly_spending,
                     x='hour',
                     y='amount',
-                    title="",  # Empty title
+                    title="",  
                     markers=True,
                     line_shape='spline'
                 )
@@ -826,7 +826,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
                     xaxis=dict(tickmode='linear', dtick=2),
                     paper_bgcolor='rgba(0,0,0,0)',
                     plot_bgcolor='rgba(0,0,0,0)',
-                    margin=dict(t=0)  # Remove top margin
+                    margin=dict(t=0)  
                 )
                 fig.update_yaxes(tickprefix='₹')
                 charts['hourly_trend'] = fig
@@ -841,7 +841,7 @@ def create_charts(categorized_data, spending_analysis, categorizer):
                     daily_spending,
                     x='Day',
                     y='amount',
-                    title="",  # Empty title
+                    title="",  \
                     color='Day',
                     color_discrete_sequence=px.colors.qualitative.Bold
                 )
@@ -857,13 +857,13 @@ def create_charts(categorized_data, spending_analysis, categorizer):
                     paper_bgcolor='rgba(0,0,0,0)',
                     plot_bgcolor='rgba(0,0,0,0)',
                     showlegend=False,
-                    margin=dict(t=0)  # Remove top margin
+                    margin=dict(t=0)  
                 )
                 fig.update_yaxes(tickprefix='₹')
                 charts['daily_trend'] = fig
 
         except Exception as e:
-            pass  # Silently handle time analysis errors
+            pass  
 
     return charts
 
@@ -916,7 +916,7 @@ def generate_ai_recommendations(categorized_data, spending_analysis, api_key):
         income_transactions = len(df[df['type'].str.lower().isin(['income', 'credit'])])
         expense_transactions = len(df[df['type'].str.lower().isin(['expense', 'debit'])])
 
-        # Prepare comprehensive prompt for AI
+        # prompt for AI
         prompt = f"""You are a skilled financial advisor analyzing this person's spending data.
 Provide PERSONALIZED recommendations based on THEIR SPECIFIC financial situation.
 
@@ -1280,7 +1280,7 @@ def analyze_wasteful_spending(categorized_data, spending_analysis, api_key):
 
 # ==================== PDF REPORT GENERATION ====================
 def create_comprehensive_pdf(categorized_data, spending_analysis, recommendations, charts_data):
-    """Create comprehensive PDF report WITHOUT Sample Transactions"""
+    """Create comprehensive PDF report"""
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=A4)
     story = []
