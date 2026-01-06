@@ -4,7 +4,7 @@
 
 AI Finance Assistant is a Streamlit-based web application that transforms raw financial PDF statements into structured transactions, rich analytics, and personalized AI-powered financial advice.  
 The app handles PDF parsing, multi-layer expense categorization, spending analysis, wasteful spending detection, and generates professional PDF reports with insights and recommendations.
-
+---
 Live demo (Hugging Face Space):  
 👉 https://huggingface.co/spaces/prasanthr0416/Ai_Finance_Analyser
 
